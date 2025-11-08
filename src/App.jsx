@@ -1,28 +1,34 @@
-import { useState } from 'react'
+import { useEffect } from 'react';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import AboutSkills from './components/AboutSkills';
+import Projects from './components/Projects';
+import Contact from './components/Contact';
 
-function App() {
-  const [count, setCount] = useState(0)
-
+function BackgroundGlow() {
+  useEffect(() => {}, []);
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg">
-        <h1 className="text-3xl font-bold text-gray-800 mb-4">
-          Vibe Coding Platform
-        </h1>
-        <p className="text-gray-600 mb-6">
-          Your AI-powered development environment
-        </p>
-        <div className="text-center">
-          <button
-            onClick={() => setCount(count + 1)}
-            className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded"
-          >
-            Count is {count}
-          </button>
-        </div>
-      </div>
+    <div aria-hidden className="pointer-events-none fixed inset-0 -z-0">
+      <div className="absolute -top-32 right-0 h-72 w-72 md:h-[420px] md:w-[420px] rounded-full bg-sky-500/30 blur-3xl" />
+      <div className="absolute bottom-0 -left-24 h-72 w-72 md:h-[420px] md:w-[420px] rounded-full bg-indigo-500/20 blur-3xl" />
     </div>
-  )
+  );
 }
 
-export default App
+export default function App() {
+  return (
+    <div className="min-h-screen bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100 antialiased">
+      <Navbar />
+      <BackgroundGlow />
+      <main>
+        <Hero />
+        <AboutSkills />
+        <Projects />
+        <Contact />
+      </main>
+      <footer className="py-10 text-center text-sm text-gray-500">
+        © {new Date().getFullYear()} Aldi Mahardiansyah. All rights reserved.
+      </footer>
+    </div>
+  );
+}
